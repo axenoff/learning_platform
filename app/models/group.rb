@@ -23,9 +23,6 @@ class Group < ApplicationRecord
   validates :date_start, presence: true
   validate :finish_date_after_start_date
 
-  # scope :active, lambda {
-  #   where(state: ACTIVE_STATES).where('date_finish > ?', Time.current.beginning_of_day)
-  # }
   belongs_to :course
 
   has_many :user_groups
@@ -34,14 +31,10 @@ class Group < ApplicationRecord
   scope :with_students, ->{ includes(:user_groups).where.not(user_groups: { id: nil }) }
   scope :future, ->{ where('date_start >= ?', Date.current).order(date_start: :asc) }
   scope :current, lambda {
-    where('date_start < ? AND date_finish <= ?', Date.current, Date.current)
+    where('date_start < ? AND date_finish >= ?', Date.current, Date.current)
       .order(date_start: :asc)
   }
   scope :past, ->{ where('date_finish < ?', Date.current).order(date_start: :desc) }
-
-
-  # has_many :students, -> (g) { g.users.where(role: :student) }
-  # has_many :teachers, ->{ role == :teacher }, class_name: 'User', through: :user_groups
 
   def finish_date_after_start_date
     return unless date_finish && date_start

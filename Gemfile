@@ -38,8 +38,8 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'pry-byebug'
   gem 'pry-rails'
-  # gem 'factory_bot_rails'
-  gem 'rspec-rails'
+  gem 'factory_bot_rails'
+  gem 'rspec-rails', git: 'https://github.com/rspec/rspec-rails', branch: "4-0-maintenance"
 end
 
 group :development do
@@ -54,6 +54,11 @@ end
 group :development, :profile do
   gem 'annotate', require: false
   gem 'rubocop'
+end
+
+group :test do
+  gem 'shoulda-matchers'
+  gem 'simplecov', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

@@ -46,17 +46,22 @@ if Rails.env.development?
     date_start: '01-12-2019',
     date_finish: '01-02-2020'
   )
-  ruby_future_group = Group.create!(
+  ruby_future_group_march = Group.create!(
     course: ruby_course,
     date_start: '01-03-2020',
     date_finish: '01-06-2020'
+  )
+  ruby_future_group_may = Group.create!(
+    course: ruby_course,
+    date_start: '01-05-2020',
+    date_finish: '01-08-2020'
   )
   python_past_group = Group.create!(
     course: python_course,
     date_start: '01-02-2019',
     date_finish: '01-05-2019'
   )
-  ruby_future_group = Group.create!(
+  python_future_group = Group.create!(
     course: python_course,
     date_start: '01-05-2020',
     date_finish: '01-07-2020'
@@ -75,8 +80,10 @@ if Rails.env.development?
   UserGroup.create!(group: ruby_past_group, user: User.find_by(email: 'student1@example.com'))
   UserGroup.create!(group: ruby_current_group, user: User.find_by(email: 'student2@example.com'))
   UserGroup.create!(group: ruby_current_group, user: User.find_by(email: 'student3@example.com'))
-  UserGroup.create!(group: ruby_future_group, user: User.find_by(email: 'student4@example.com'))
-  UserGroup.create!(group: ruby_future_group, user: User.find_by(email: 'student5@example.com'))
+  UserGroup.create!(group: ruby_future_group_march, user: User.find_by(email: 'student4@example.com'))
+  UserGroup.create!(group: ruby_future_group_march, user: User.find_by(email: 'student5@example.com'))
+  UserGroup.create!(group: ruby_future_group_march, user: User.find_by(email: 'student9@example.com'))
+  UserGroup.create!(group: ruby_future_group_may, user: User.find_by(email: 'student10@example.com'))
   UserGroup.create!(group: python_past_group, user: User.find_by(email: 'student6@example.com'))
   UserGroup.create!(group: python_future_group, user: User.find_by(email: 'student5@example.com'))
   UserGroup.create!(group: python_future_group, user: User.find_by(email: 'student7@example.com'))

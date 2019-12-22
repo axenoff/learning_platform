@@ -1,0 +1,13 @@
+<h3>Список курсов</h3>
+<%= form_for :course, url: course_path(request), method: :get do |f| %>
+  <%= link_to 'Показать все', params.merge(sort: 'by_name').permit(:sort), class: 'btn' if params[:sort] == 'by_date' %>
+  <%= link_to 'Показать те, на которые можно записаться',
+        params.merge(sort: 'by_date').permit(:sort),
+        class: 'btn' unless params[:sort] == 'by_date' %>
+  <% @courses.each do |course| %>
+    <hr />
+    <p><%= link_to course.name, {:action => "show", :id => course.id} -%>
+    <p><%= "Старт ближайших занятий: #{course.upcoming_group_start || 'следите за обновлениями!'}" %>
+    <p><%= "Число записавшихся учеников: #{course.upcoming_group_students_number}" %>
+  <% end %>
+<% end %>

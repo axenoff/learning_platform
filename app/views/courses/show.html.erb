@@ -1,6 +1,6 @@
 <h2><%= "#{@course.name}"%></h2>
 <hr />
-<p><%= "Описание: #{@course.description}" %>
+<p><%= @course.description if @course.description %>
 <% if @course.groups.future.present? %>
   <h3>Набор в группы:</h3>
   <% @course.groups.future.each do |group| %>
@@ -11,9 +11,10 @@
       <p><%= student.email %>
     <% end %>     
     <%= form_for :user_group, url: course_group_user_groups_path(course_id: @course.id, group_id: group.id) do |f| %>
-      <%= f.text_field :email, class: 'form-control'%>
+      <%= f.text_field :email, placeholder: 'Ваш email', class: 'form-control'%>
       <%= f.submit 'Записаться в группу', class: 'btn btn-primary' %>
     <% end %>
+    <hr />
   <% end %>
 <% end %>
 <% if @course.groups.current.present? %>
@@ -21,6 +22,7 @@
   <% @course.groups.current.each do |group| %>
     <p><%= "Начало занятий: #{group.date_start.to_date}" %>
     <p><%= "Окончание занятий: #{group.date_finish.to_date}" %>
+    <hr />
   <% end %>
 <% end %>
 <% if @course.groups.past.present? %>
@@ -28,7 +30,6 @@
   <% @course.groups.past.each do |group| %>
     <p><%= "Начало занятий: #{group.date_start}" %>
     <p><%= "Окончание занятий: #{group.date_finish}" %>
+    <hr />
   <% end %>
 <% end %>
-<hr />
-

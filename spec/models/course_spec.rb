@@ -31,14 +31,6 @@ RSpec.describe Course, type: :model do
     expect(described_class.sorted_by_date_start).to match_array [course_b]
   end
 
-  it 'response to upcoming_group_start' do
-    expect(course_b.upcoming_group_start).to eq group_b.date_start
-  end
-
-  it 'response to upcoming_group_students_number' do
-    expect(course_b.upcoming_group_students_number).to eq 1
-  end
-
   it 'response to upcoming_group' do
     expect(course_b.upcoming_group).to eq group_b
   end

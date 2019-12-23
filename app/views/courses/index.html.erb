@@ -10,8 +10,8 @@
     <hr />
     <p><%= link_to course.name, {:action => "show", :id => course.id} %>
     <% if course.upcoming_group %>
-      <p><%= "Старт ближайших занятий: #{course.upcoming_group_start}" %>
-      <p><%= "Число записавшихся учеников: #{course.upcoming_group_students_number}"%>
+      <p><%= "Старт ближайших занятий: #{course.upcoming_group.date_start&.to_date}" %>
+      <p><%= "Число записавшихся учеников: #{course.upcoming_group.students&.count}"%>
     <% else %>
       <p><%= 'Следите за обновлениями!' %>
     <% end %>
